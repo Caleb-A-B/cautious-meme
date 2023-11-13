@@ -21,15 +21,21 @@ module.exports = () => {
         template: './index.html',
         title: 'J.A.T.E.'
       }),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
 
-      
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: 'PWA Text Editor',
         short_name: 'J.A.T.E.',
         description: 'Just Another Text Editor',
         background_color: '#ffffff',
-        fingerprints: false,
-        publicPath: '.',
+        theme_color: '#225ca3',
+        start_url: '/',        
+        publicPath: '/',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
@@ -38,10 +44,7 @@ module.exports = () => {
           }
         ]
       }),
-      new InjectManifest({
-        swSrc: './src-sw.js',
-        swDest: 'service-worker.js',
-      }),
+
     ],
     module: {
       rules: [
